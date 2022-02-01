@@ -19,6 +19,7 @@ upgrade: ## Upgrades all dependancies
 
 test: ## Runs unit tests
 	go test -count=1 -race -covermode=atomic -coverprofile=cover.out ./...
+	go tool cover -func=cover.out
 .PHONY: test
 
 lint: ## Lints the entire project 
