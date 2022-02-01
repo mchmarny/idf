@@ -3,21 +3,21 @@ package main
 import (
 	"fmt"
 
-	"github.com/mchmarny/idf"
+	"github.com/mchmarny/idf/id"
 )
 
 func main() {
-	f := idf.New(
+	f := id.New(
 		// Normalizes the ID by removing spaces and converting to lowercase
-		idf.WithNormalizing(),
+		id.WithNormalizing(),
 		// Padded so that all IDs are of the same length
-		idf.WithPadding("^", 20),
+		id.WithPadding("^", 20),
 		// SHA246 encode the ID resulting in 64 char lne string
-		idf.WithSHA256Encoding(),
+		id.WithSHA256Encoding(),
 		// And, prefix it with "id-"
-		idf.WithPrefix("id-"),
+		id.WithPrefix("id-"),
 		// Endign with a date to allow for predictable sortability
-		idf.WithDatetime("2006-01-02", "-", true),
+		id.WithDatetime("2006-01-02", "-", true),
 	)
 
 	ids := []string{

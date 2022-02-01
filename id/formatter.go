@@ -1,4 +1,4 @@
-package idf
+package id
 
 type IDFormatter struct {
 	formatters []Formatter

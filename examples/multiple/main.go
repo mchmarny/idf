@@ -3,15 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/mchmarny/idf"
+	"github.com/mchmarny/idf/id"
 )
 
 func main() {
-	f := idf.New(
+	f := id.New(
 		// Base64 encode the ID
-		idf.WithBase64Encoding(),
+		id.WithBase64Encoding(),
 		// And, prefix it with "id-"
-		idf.WithPrefix("id-"),
+		id.WithPrefix("id-"),
 	)
 	s := "qw&^*($#@!~"
 	id, err := f.ToID(s)

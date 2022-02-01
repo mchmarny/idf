@@ -8,15 +8,22 @@ ID formatting library. Use it to format existing values as IDs in specific forma
 
 ## Usage
 
-The `idf` library can be configured with any number of the supported formatters (see the supported list of formatters below). For example:
+The `idf` library can be configured with any number of the supported formatters (see the supported list of formatters below). 
+
+For example, import:
 
 ```go
-f := idf.New(
-        idf.WithPadding("^", 20),
-		idf.WithSHA256Encoding(),
-		idf.WithPrefix("id-"),
-		idf.WithSuffix("-test"),
-    )
+import "github.com/mchmarny/idf/id"
+```
+
+and than create an instance: 
+
+```go
+f := id.New(id.WithPadding("^", 20),
+		    id.WithSHA256Encoding(),
+		    id.WithPrefix("id-"),
+		    id.WithSuffix("-test"),
+)
 ```
 
 > Note, the order of formatters matters! Padding and encoding will render different results than encoding and then padding. 
@@ -48,7 +55,7 @@ The `idf` library currently supports the following formatters:
 Value you don't control has to be used as an ID in a system with specific ID format requirements. For example, IDs must be start with alpha and be URL safe. 
 
 ```go
-f := idf.New(idf.WithBase64Encoding(), idf.WithPrefix("id-"))
+f := id.New(id.WithBase64Encoding(), id.WithPrefix("id-"))
 id, err := f.ToID("123-^!(")
 ```
 
@@ -59,7 +66,7 @@ Will result in `id` being `id-MTIzNDU2Nzg5MTAxMTEyMTMxNDE1MTYxNzE4MTkyMDIxMjIyMz
 You want values of different lengths to result in a consistent length ID.
 
 ```go
-f := idf.New(idf.WithSHA256Encoding(), idf.WithPrefix("id-"))
+f := id.New(id.WithSHA256Encoding(), id.WithPrefix("id-"))
 id1, err := f.ToID("user-12345")
 id2, err := f.ToID("user-12345678910111213141516171819")
 ```
@@ -74,9 +81,9 @@ and `id2` being:
 You need to create reproducible keys from multiple values which allow for reliable scans/sorts (e.g. key in a NoSQL systems without secondary index support).
 
 ```go
-f := idf.New(idf.WithSHA256Encoding(), 
-             idf.WithPrefix("id-"), 
-			 idf.WithDatetime("2006-01-02", "-", true),
+f := id.New(id.WithSHA256Encoding(), 
+             id.WithPrefix("id-"), 
+			 id.WithDatetime("2006-01-02", "-", true),
 	)
 id1, err := f.ToID("user-12345")
 ```
