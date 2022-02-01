@@ -2,6 +2,13 @@ package idf
 
 import "github.com/mchmarny/idf/internal/formatter"
 
+// WithNormalizing normalizes the input string to lowercase and trim spaces.
+func WithNormalizing() func(*IDFormatter) {
+	return func(f *IDFormatter) {
+		f.formatters = append(f.formatters, &formatter.NormalizingFormatter{})
+	}
+}
+
 // WithBase64Encoding base64 with URL encodes the input string.
 func WithBase64Encoding() func(*IDFormatter) {
 	return func(f *IDFormatter) {
