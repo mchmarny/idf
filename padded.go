@@ -6,21 +6,21 @@ import (
 )
 
 // WithPadding will pad the input string with the given character to the given length.
-func WithPadding(char string, length int) func(*IDFormater) {
-	return func(f *IDFormater) {
-		f.formaters = append(f.formaters, &PaddingFormater{
+func WithPadding(char string, length int) func(*IDFormatter) {
+	return func(f *IDFormatter) {
+		f.Formatters = append(f.Formatters, &PaddingFormatter{
 			padChar: char,
 			length:  length,
 		})
 	}
 }
 
-type PaddingFormater struct {
+type PaddingFormatter struct {
 	length  int
 	padChar string
 }
 
-func (f *PaddingFormater) Format(v string) (string, error) {
+func (f *PaddingFormatter) Format(v string) (string, error) {
 	if f.length == 0 {
 		return v, nil
 	}

@@ -3,14 +3,14 @@ package idf
 import "encoding/base64"
 
 // WithBase64Encoding base64 with URL encodes the input string.
-func WithBase64Encoding() func(*IDFormater) {
-	return func(f *IDFormater) {
-		f.formaters = append(f.formaters, &Base64EncodingFormater{})
+func WithBase64Encoding() func(*IDFormatter) {
+	return func(f *IDFormatter) {
+		f.Formatters = append(f.Formatters, &Base64EncodingFormatter{})
 	}
 }
 
-type Base64EncodingFormater struct{}
+type Base64EncodingFormatter struct{}
 
-func (f *Base64EncodingFormater) Format(v string) (string, error) {
+func (f *Base64EncodingFormatter) Format(v string) (string, error) {
 	return base64.URLEncoding.EncodeToString([]byte(v)), nil
 }

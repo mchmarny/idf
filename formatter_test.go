@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestIDFormater(t *testing.T) {
+func TestIDFormatter(t *testing.T) {
 	t.Run("test with no options", func(t *testing.T) {
 		f := New()
 		assert.NotNil(t, f)

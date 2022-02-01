@@ -5,18 +5,18 @@ import (
 )
 
 // WithPrefix prepends the prefix to the input string.
-func WithPrefix(prefix string) func(*IDFormater) {
-	return func(f *IDFormater) {
-		f.formaters = append(f.formaters, &PrefixFormater{
+func WithPrefix(prefix string) func(*IDFormatter) {
+	return func(f *IDFormatter) {
+		f.Formatters = append(f.Formatters, &PrefixFormatter{
 			prefix: prefix,
 		})
 	}
 }
 
-type PrefixFormater struct {
+type PrefixFormatter struct {
 	prefix string
 }
 
-func (f *PrefixFormater) Format(v string) (string, error) {
+func (f *PrefixFormatter) Format(v string) (string, error) {
 	return fmt.Sprintf("%s%s", f.prefix, v), nil
 }

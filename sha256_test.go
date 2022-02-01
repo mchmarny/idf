@@ -6,9 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSHA256EncodingFormater(t *testing.T) {
+func TestSHA256EncodingFormatter(t *testing.T) {
 	t.Run("test resulting id length", func(t *testing.T) {
-		f := &SHA256EncodingFormater{}
+		f := &SHA256EncodingFormatter{}
 		assert.NotNil(t, f)
 		id1, err := f.Format("!@#$&$(*=")
 		assert.NoError(t, err)

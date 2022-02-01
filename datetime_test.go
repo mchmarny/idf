@@ -8,9 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestDatetimeFormater(t *testing.T) {
-	t.Run("test datetime formater", func(t *testing.T) {
-		f := &DatetimeFormater{
+func TestDatetimeFormatter(t *testing.T) {
+	t.Run("test datetime Formatter", func(t *testing.T) {
+		f := &DatetimeFormatter{
 			format:    "2006-01-02",
 			separator: ":",
 			v:         time.Now().UTC(),

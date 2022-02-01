@@ -3,19 +3,19 @@ package idf
 import "strings"
 
 // WithNormalizing normalizes the input string to lowercase and trim spaces.
-func WithNormalizing() func(*IDFormater) {
-	return func(f *IDFormater) {
-		f.formaters = append(f.formaters, &NormalizingFormater{
+func WithNormalizing() func(*IDFormatter) {
+	return func(f *IDFormatter) {
+		f.Formatters = append(f.Formatters, &NormalizingFormatter{
 			normalized: true,
 		})
 	}
 }
 
-type NormalizingFormater struct {
+type NormalizingFormatter struct {
 	normalized bool
 }
 
-func (f *NormalizingFormater) Format(v string) (string, error) {
+func (f *NormalizingFormatter) Format(v string) (string, error) {
 	if f.normalized {
 		v = strings.TrimSpace(strings.ToLower(v))
 	}
