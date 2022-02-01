@@ -51,11 +51,15 @@ jobs:
         version: latest
         args: --timeout 3m
 
-    - name: Test
+    - name: Test Code
       run: go test -count=1 -race -covermode=atomic -coverprofile=cover.out ./...
       
-    - name: Cover
-      run: go tool cover -func=cover.out
+    - name: Test Coverage
+      uses: codecov/codecov-action@v2
+      with:
+        files: ./cover.out
+        fail_ci_if_error: true
+      
       
       
     
