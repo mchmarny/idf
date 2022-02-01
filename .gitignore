@@ -12,3 +12,6 @@ bin
 
 # Keys 
 *.pem
+
+# Vendored Deps
+vendor
