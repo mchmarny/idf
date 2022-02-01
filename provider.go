@@ -1,4 +1,4 @@
-package cidme
+package idf
 
 import (
 	"fmt"

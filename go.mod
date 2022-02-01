@@ -1,4 +1,4 @@
-module github.com/mchmarny/cidme
+module github.com/mchmarny/idf
 
 go 1.17
 
