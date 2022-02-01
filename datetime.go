@@ -6,12 +6,12 @@ import (
 )
 
 // WithPrefix prepends the prefix to the input string.
-func WithDatetime(format, seperator string, utc bool) func(*IDFormater) {
+func WithDatetime(format, seperator string, v time.Time) func(*IDFormater) {
 	return func(f *IDFormater) {
 		f.formaters = append(f.formaters, &DatetimeFormater{
 			format:    format,
 			seperator: seperator,
-			utc:       utc,
+			v:         v,
 		})
 	}
 }
@@ -19,14 +19,9 @@ func WithDatetime(format, seperator string, utc bool) func(*IDFormater) {
 type DatetimeFormater struct {
 	seperator string
 	format    string
-	utc       bool
+	v         time.Time
 }
 
 func (f *DatetimeFormater) Format(v string) (string, error) {
-	now := time.Now()
-	if f.utc {
-		now = now.UTC()
-	}
-
-	return fmt.Sprintf("%s%s%s", v, f.seperator, now.Format(f.format)), nil
+	return fmt.Sprintf("%s%s%s", v, f.seperator, f.v.Format(f.format)), nil
 }
