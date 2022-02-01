@@ -5,23 +5,23 @@ import (
 	"time"
 )
 
-// WithPrefix prepends the prefix to the input string.
-func WithDatetime(format, seperator string, v time.Time) func(*IDFormater) {
+// WithDatetime formats the time value and appends it to the id.
+func WithDatetime(format, separator string, v time.Time) func(*IDFormater) {
 	return func(f *IDFormater) {
 		f.formaters = append(f.formaters, &DatetimeFormater{
 			format:    format,
-			seperator: seperator,
+			separator: separator,
 			v:         v,
 		})
 	}
 }
 
 type DatetimeFormater struct {
-	seperator string
+	separator string
 	format    string
 	v         time.Time
 }
 
 func (f *DatetimeFormater) Format(v string) (string, error) {
-	return fmt.Sprintf("%s%s%s", v, f.seperator, f.v.Format(f.format)), nil
+	return fmt.Sprintf("%s%s%s", v, f.separator, f.v.Format(f.format)), nil
 }

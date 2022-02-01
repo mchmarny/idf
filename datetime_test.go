@@ -12,7 +12,7 @@ func TestDatetimeFormater(t *testing.T) {
 	t.Run("test datetime formater", func(t *testing.T) {
 		f := &DatetimeFormater{
 			format:    "2006-01-02",
-			seperator: ":",
+			separator: ":",
 			v:         time.Now().UTC(),
 		}
 		assert.NotNil(t, f)
