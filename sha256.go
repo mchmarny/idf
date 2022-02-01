@@ -8,7 +8,7 @@ import (
 // WithSHA256Encoding sha256 encodes the input string.
 func WithSHA256Encoding() func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &SHA256EncodingFormatter{})
+		f.formatters = append(f.formatters, &SHA256EncodingFormatter{})
 	}
 }
 

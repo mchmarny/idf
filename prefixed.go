@@ -4,19 +4,19 @@ import (
 	"fmt"
 )
 
-// WithPrefix prepends the prefix to the input string.
+// WithPrefix normalizes the input string to lowercase and trim spaces.
 func WithPrefix(prefix string) func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &PrefixFormatter{
+		f.formatters = append(f.formatters, &PrefixFormater{
 			prefix: prefix,
 		})
 	}
 }
 
-type PrefixFormatter struct {
+type PrefixFormater struct {
 	prefix string
 }
 
-func (f *PrefixFormatter) Format(v string) (string, error) {
+func (f *PrefixFormater) Format(v string) (string, error) {
 	return fmt.Sprintf("%s%s", f.prefix, v), nil
 }

@@ -6,12 +6,12 @@ import (
 )
 
 // WithDatetime formats the time value and appends it to the id.
-func WithDatetime(format, separator string, v time.Time) func(*IDFormatter) {
+func WithDatetime(format, separator string, utc bool) func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &DatetimeFormatter{
+		f.formatters = append(f.formatters, &DatetimeFormatter{
 			format:    format,
 			separator: separator,
-			v:         v,
+			utc:       utc,
 		})
 	}
 }
@@ -19,9 +19,13 @@ func WithDatetime(format, separator string, v time.Time) func(*IDFormatter) {
 type DatetimeFormatter struct {
 	separator string
 	format    string
-	v         time.Time
+	utc       bool
 }
 
 func (f *DatetimeFormatter) Format(v string) (string, error) {
-	return fmt.Sprintf("%s%s%s", v, f.separator, f.v.Format(f.format)), nil
+	now := time.Now()
+	if f.utc {
+		now = now.UTC()
+	}
+	return fmt.Sprintf("%s%s%s", v, f.separator, now.Format(f.format)), nil
 }

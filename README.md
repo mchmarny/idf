@@ -4,6 +4,8 @@ ID formatting library. Use it to format existing values as IDs in specific forma
 
 [![Test](https://github.com/mchmarny/idf/actions/workflows/test-on-push.yaml/badge.svg?branch=main)](https://github.com/mchmarny/idf/actions/workflows/test-on-push.yaml) [![Go Report Card](https://goreportcard.com/badge/github.com/mchmarny/idf)](https://goreportcard.com/report/github.com/mchmarny/idf) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mchmarny/idf) [![codecov](https://codecov.io/gh/mchmarny/idf/branch/main/graph/badge.svg?token=00H8S7GMPP)](https://codecov.io/gh/mchmarny/idf)
 
+> Note, this library is under development, don't use in anything serious just yet. 
+
 ## Usage
 
 The `idf` library can be configured with any number of the supported formatters (see the supported list of formatters below). For example:
@@ -52,10 +54,35 @@ id, err := f.ToID("123-^!(")
 
 Will result in `id` being `id-MTIzNDU2Nzg5MTAxMTEyMTMxNDE1MTYxNzE4MTkyMDIxMjIyMzI0MjUyNi1eISg=`
 
-### Predictable ID
+### Predictable Length ID
 
-WIP
+You want values of different lengths to result in a consistent length ID.
 
-### Predictably Compounded ID
+```go
+f := idf.New(idf.WithSHA256Encoding(), idf.WithPrefix("id-"))
+id1, err := f.ToID("user-12345")
+id2, err := f.ToID("user-12345678910111213141516171819")
+```
 
-WIP
+Will result in `id1` being:
+`id-43a2f41a7bffacce74013d74a2f459db5d69d38e061cb8d0e5e262102e2d98d7` 
+and `id2` being: 
+`id-e99f84f908862e2ea62f7ee4db4af40322a0adf9174f085ec64e032fadbbff56`
+
+### Predictable and Compounded ID
+
+You need to create reproducible keys from multiple values which allow for reliable scans/sorts (e.g. key in a NoSQL systems without secondary index support).
+
+```go
+f := idf.New(idf.WithSHA256Encoding(), 
+             idf.WithPrefix("id-"), 
+			 idf.WithDatetime("2006-01-02", "-", true),
+	)
+id1, err := f.ToID("user-12345")
+```
+
+Will result in `id1` being: `id-43a2f41a7bffacce74013d74a2f459db5d69d38e061cb8d0e5e262102e2d98d7-2022-01-01`, which later would allow you to reliably query on that compounded key. 
+
+```sql
+where key >= 'id-43a2f41a7bffacce74013d74a2f459db5d69d38e061cb8d0e5e262102e2d98d7-2022-01-01' and key <= 'id-43a2f41a7bffacce74013d74a2f459db5d69d38e061cb8d0e5e262102e2d98d7-2022-01-31'
+```

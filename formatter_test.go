@@ -88,7 +88,7 @@ func TestIDFormatter(t *testing.T) {
 		f := New(WithPadding("^", 20),
 			WithSHA256Encoding(),
 			WithPrefix("id-"),
-			WithDatetime("2006-01-02", "-", time.Now().UTC()))
+			WithDatetime("2006-01-02", "-", true))
 		assert.NotNil(t, f)
 		id, err := f.ToID("user1234")
 		assert.NoError(t, err)

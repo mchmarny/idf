@@ -1,7 +1,7 @@
 package idf
 
 type IDFormatter struct {
-	Formatters []Formatter
+	formatters []Formatter
 }
 
 type Formatter interface {
@@ -11,7 +11,7 @@ type Formatter interface {
 // New creates a new IDFormatter with given options.
 func New(opts ...func(*IDFormatter)) *IDFormatter {
 	f := &IDFormatter{
-		Formatters: []Formatter{},
+		formatters: []Formatter{},
 	}
 	for _, o := range opts {
 		o(f)
@@ -22,7 +22,7 @@ func New(opts ...func(*IDFormatter)) *IDFormatter {
 // ToID converts the given string to an ID using the configured options.
 func (p *IDFormatter) ToID(v string) (string, error) {
 	var err error
-	for _, f := range p.Formatters {
+	for _, f := range p.formatters {
 		v, err = f.Format(v)
 		if err != nil {
 			return "", err

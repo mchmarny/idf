@@ -5,7 +5,7 @@ import "strings"
 // WithNormalizing normalizes the input string to lowercase and trim spaces.
 func WithNormalizing() func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &NormalizingFormatter{
+		f.formatters = append(f.formatters, &NormalizingFormatter{
 			normalized: true,
 		})
 	}

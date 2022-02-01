@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/mchmarny/idf"
 )
@@ -18,7 +17,7 @@ func main() {
 		// And, prefix it with "id-"
 		idf.WithPrefix("id-"),
 		// Endign with a date to allow for predictable sortability
-		idf.WithDatetime("2006-01-02", "-", time.Now().UTC()),
+		idf.WithDatetime("2006-01-02", "-", true),
 	)
 
 	ids := []string{

@@ -13,7 +13,7 @@ func TestDatetimeFormatter(t *testing.T) {
 		f := &DatetimeFormatter{
 			format:    "2006-01-02",
 			separator: ":",
-			v:         time.Now().UTC(),
+			utc:       true,
 		}
 		assert.NotNil(t, f)
 		id, err := f.Format("id1234")

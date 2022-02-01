@@ -7,7 +7,7 @@ import (
 // WithPrefix prepends the prefix to the input string.
 func WithSuffix(suffix string) func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &SuffixFormatter{
+		f.formatters = append(f.formatters, &SuffixFormatter{
 			suffix: suffix,
 		})
 	}

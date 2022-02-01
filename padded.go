@@ -8,7 +8,7 @@ import (
 // WithPadding will pad the input string with the given character to the given length.
 func WithPadding(char string, length int) func(*IDFormatter) {
 	return func(f *IDFormatter) {
-		f.Formatters = append(f.Formatters, &PaddingFormatter{
+		f.formatters = append(f.formatters, &PaddingFormatter{
 			padChar: char,
 			length:  length,
 		})
