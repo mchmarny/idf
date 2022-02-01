@@ -1,4 +1,4 @@
-package idf
+package formatter
 
 import (
 	"fmt"
@@ -11,9 +11,9 @@ import (
 func TestDatetimeFormatter(t *testing.T) {
 	t.Run("test datetime Formatter", func(t *testing.T) {
 		f := &DatetimeFormatter{
-			format:    "2006-01-02",
-			separator: ":",
-			utc:       true,
+			BaseFormat: "2006-01-02",
+			Separator:  ":",
+			UTC:        true,
 		}
 		assert.NotNil(t, f)
 		id, err := f.Format("id1234")

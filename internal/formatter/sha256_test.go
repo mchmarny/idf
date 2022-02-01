@@ -1,4 +1,4 @@
-package idf
+package formatter
 
 import (
 	"testing"
