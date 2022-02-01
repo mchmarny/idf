@@ -1,4 +1,4 @@
-package id
+package idf
 
 import (
 	"encoding/base64"

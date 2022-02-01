@@ -4,7 +4,7 @@ ID formatting library. Use it to format existing values as IDs in specific forma
 
 [![Test](https://github.com/mchmarny/idf/actions/workflows/test-on-push.yaml/badge.svg?branch=main)](https://github.com/mchmarny/idf/actions/workflows/test-on-push.yaml) [![Go Report Card](https://goreportcard.com/badge/github.com/mchmarny/idf)](https://goreportcard.com/report/github.com/mchmarny/idf) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mchmarny/idf) [![codecov](https://codecov.io/gh/mchmarny/idf/branch/main/graph/badge.svg?token=00H8S7GMPP)](https://codecov.io/gh/mchmarny/idf)
 
-> Note, this library is under development, don't use in anything serious just yet. 
+> Note, this library is being refactored to go1.18 (generics), don't use in anything serious just yet. 
 
 ## Usage
 

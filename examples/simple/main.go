@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/mchmarny/idf/id"
+	"github.com/mchmarny/idf"
 )
 
 func main() {
-	f := id.New(
+	f := idf.New(
 		// Normalizes the ID by removing spaces and converting to lowercase
-		id.WithNormalizing(),
+		idf.WithNormalizing(),
 	)
 	s := "TesT1234"
 	id, err := f.ToID(s)

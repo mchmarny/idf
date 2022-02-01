@@ -3,15 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/mchmarny/idf/id"
+	"github.com/mchmarny/idf"
 )
 
 func main() {
-	f := id.New(
+	f := idf.New(
 		// SHA246 encode the ID resulting in 64 char lne string
-		id.WithSHA256Encoding(),
+		idf.WithSHA256Encoding(),
 		// And, prefix it with "id-"
-		id.WithPrefix("id-"),
+		idf.WithPrefix("id-"),
 	)
 	s1 := "123-^!("
 	id1, err := f.ToID(s1)

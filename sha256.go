@@ -1,4 +1,4 @@
-package id
+package idf
 
 import (
 	"crypto/sha256"
