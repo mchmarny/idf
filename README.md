@@ -1,3 +1,3 @@
 # idf
 
-Compounded ID Utility
+ID formater
