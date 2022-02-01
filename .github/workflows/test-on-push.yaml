@@ -52,7 +52,7 @@ jobs:
         args: --timeout 3m
 
     - name: Test
-      run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+      run: go test -count=1 -race -covermode=atomic -coverprofile=cover.out ./...
       
     - name: Cover
       run: go tool cover -func=cover.out
