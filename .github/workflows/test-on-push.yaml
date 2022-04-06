@@ -55,7 +55,7 @@ jobs:
       run: go test -count=1 -race -covermode=atomic -coverprofile=cover.out ./...
       
     - name: Test Coverage
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         files: ./cover.out
         fail_ci_if_error: true
